@@ -65,11 +65,13 @@ export async function getAllJobsAction({
           {
             position: {
               contains: search,
+              mode: 'insensitive', // Make search case-insensitive
             },
           },
           {
             company: {
               contains: search,
+              mode: 'insensitive', // Make search case-insensitive
             },
           },
         ],
