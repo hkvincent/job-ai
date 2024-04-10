@@ -74,6 +74,12 @@ export async function getAllJobsAction({
               mode: 'insensitive', // Make search case-insensitive
             },
           },
+          {
+            location: {
+              contains: search,
+              mode: 'insensitive', // Make search case-insensitive
+            },
+          },
         ],
       };
     }
