@@ -11,13 +11,14 @@ datasource db {
 }
 
 model Job {
-  id        String      @id @default(uuid())
-  clerkId   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  clerkId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  appliedDate DateTime @default(now())
   position    String
-  company   String
-  location  String
+  company     String
+  location    String
   status      String
-  mode     String
+  mode        String
 }

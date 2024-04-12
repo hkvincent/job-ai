@@ -17,7 +17,7 @@ function authenticateAndRedirect(): string {
 export async function createJobAction(
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   const userId = authenticateAndRedirect();
   try {
     createAndEditJobSchema.parse(values);
@@ -227,7 +227,7 @@ export async function getChartsDataAction(): Promise<
     });
 
     let applicationsPerMonth = jobs.reduce((acc, job) => {
-      const date = dayjs(job.createdAt).format('MMM YY');
+      const date = dayjs(job.appliedDate).format('MMM YY');
 
       const existingEntry = acc.find((entry) => entry.date === date);
 

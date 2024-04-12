@@ -10,6 +10,7 @@ export type JobType = {
   location: string;
   status: string;
   mode: string;
+  appliedDate: Date;
 };
 
 export enum JobStatus {
@@ -35,6 +36,7 @@ export const createAndEditJobSchema = z.object({
   location: z.string().min(2, {
     message: 'location must be at least 2 characters.',
   }),
+  appliedDate: z.date(),
   status: z.nativeEnum(JobStatus),
   mode: z.nativeEnum(JobMode),
 });

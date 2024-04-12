@@ -16,7 +16,7 @@ import { Badge } from './ui/badge';
 import JobInfo from './JobInfo';
 import DeleteJobButton from './DeleteJobButton';
 function JobCard({ job }: { job: JobType }) {
-  const date = new Date(job.createdAt).toLocaleDateString();
+  const date = new Date(job.appliedDate).toLocaleDateString();
 
   return (
     <Card className='bg-muted'>
@@ -38,7 +38,7 @@ function JobCard({ job }: { job: JobType }) {
       </CardContent>
       <CardFooter className='flex gap-4'>
         <Button asChild size='sm'>
-          <Link href={`/jobs/${job.id}`}>edit</Link>
+          <Link href={`/jobs/${job.id}`}>Edit</Link>
         </Button>
         <DeleteJobButton id={job.id} />
       </CardFooter>

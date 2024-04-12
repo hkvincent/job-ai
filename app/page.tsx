@@ -8,6 +8,7 @@ export default function Home() {
     <main>
       <header className='max-w-6xl mx-auto px-4 sm:px-8 py-6'>
         {/* <Image src={Logo} alt='logo' /> */}
+        <Image src="/android-chrome-192x192.png" width={128} height={128} alt='logo' className='mx-auto' priority />
       </header>
       <section className='max-w-6xl mx-auto px-4 sm:px-8 h-screen -mt-20 grid lg:grid-cols-[1fr,400px] items-center'>
         <div>

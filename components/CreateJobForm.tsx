@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 
-import { CustomFormField, CustomFormSelect } from './FormComponents';
+import { CustomFormDatePicker, CustomFormField, CustomFormSelect } from './FormComponents';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createJobAction } from '@/utils/actions';
@@ -27,6 +27,7 @@ function CreateJobForm() {
       position: '',
       company: '',
       location: '',
+      appliedDate: new Date(),
       status: JobStatus.Pending,
       mode: JobMode.FullTime,
     },
@@ -52,6 +53,7 @@ function CreateJobForm() {
   });
 
   function onSubmit(values: CreateAndEditJobType) {
+    console.log(values);
     mutate(values);
   }
   return (
@@ -82,6 +84,8 @@ function CreateJobForm() {
             labelText='job mode'
             items={Object.values(JobMode)}
           />
+          {/* date */}
+          <CustomFormDatePicker labelText='apply date' name='appliedDate' control={form.control} type="date" />
           <Button
             type='submit'
             className='self-end capitalize'

@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 
-import { CustomFormField, CustomFormSelect } from './FormComponents';
+import { CustomFormDatePicker, CustomFormField, CustomFormSelect } from './FormComponents';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { getSingleJobAction, updateJobAction } from '@/utils/actions';
 import { useToast } from '@/components/ui/use-toast';
@@ -56,6 +56,7 @@ function EditJobForm({ jobId }: { jobId: string }) {
       location: data?.location || '',
       status: (data?.status as JobStatus) || JobStatus.Pending,
       mode: (data?.mode as JobMode) || JobMode.FullTime,
+      appliedDate: data?.appliedDate || new Date(),
     },
   });
 
@@ -95,13 +96,14 @@ function EditJobForm({ jobId }: { jobId: string }) {
             labelText='job mode'
             items={Object.values(JobMode)}
           />
-
+          {/* date */}
+          <CustomFormDatePicker labelText='apply date' name='appliedDate' control={form.control} type="date" />
           <Button
             type='submit'
             className='self-end capitalize'
             disabled={isPending}
           >
-            {isPending ? 'updating...' : 'edit job'}
+            {isPending ? 'updating...' : 'Save'}
           </Button>
         </div>
       </form>
