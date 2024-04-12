@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Job AI',
   description: 'Job application tracking system for job hunters',
+  appleWebApp: {
+    title: "JOB AI",
+    statusBarStyle: "default",
+  },
 };
 
 export default function RootLayout({
@@ -18,6 +22,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en' suppressHydrationWarning>
+        <head>
+          <link rel="manifest" href="/site.webmanifest"></link>
+          <script src="/serviceWorkerRegister.js" defer></script>
+          <script src="https://accounts.google.com/gsi/client" async defer></script>
+        </head>
         <body className={inter.className}>
           <Providers>{children}</Providers>
         </body>
