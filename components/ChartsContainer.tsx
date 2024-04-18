@@ -20,7 +20,7 @@ function ChartsContainer() {
     refetch(); // Refetch the data when period changes
   };
 
-  if (isLoading) return (<h2 className='text-xl'>Please wait...</h2>);
+  if (isLoading) return (<h2 className='mt-16 text-center text-xl'>Please wait...</h2>);
 
   if (!data || data.length < 1) return null;
 
