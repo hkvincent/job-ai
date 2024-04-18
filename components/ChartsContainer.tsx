@@ -9,7 +9,7 @@ import { getChartsDataAction } from '@/utils/actions';
 function ChartsContainer() {
   const [period, setPeriod] = useState('monthly'); // State to store the period choice
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ['charts', period], // Include period in the query key for proper caching
     queryFn: () => getChartsDataAction(period === 'weekly'),
   });
@@ -20,8 +20,10 @@ function ChartsContainer() {
     refetch(); // Refetch the data when period changes
   };
 
+  if (isLoading) return (<h2 className='text-xl'>Please wait...</h2>);
+
   if (!data || data.length < 1) return null;
-  console.log(data);
+
   return (
     <section className='mt-16'>
       <h1 className='text-4xl font-semibold text-center'>
