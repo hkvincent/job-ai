@@ -6,6 +6,8 @@ import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types';
 import { redirect } from 'next/navigation';
 import { Prisma } from '@prisma/client';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+dayjs.extend(isoWeek);
 
 function authenticateAndRedirect(): string {
   const { userId } = auth();
@@ -208,28 +210,30 @@ export async function getStatsAction(): Promise<{
   }
 }
 
-export async function getChartsDataAction(): Promise<
-  Array<{ date: string; count: number }>
-> {
+
+export async function getChartsDataAction(weekly?: boolean): Promise<Array<{ date: string; count: number }>> {
   const userId = authenticateAndRedirect();
   const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
+
   try {
     const jobs = await prisma.job.findMany({
       where: {
         clerkId: userId,
-        createdAt: {
+        appliedDate: {
           gte: sixMonthsAgo,
         },
       },
       orderBy: {
-        createdAt: 'asc',
+        appliedDate: 'asc',
       },
     });
 
-    let applicationsPerMonth = jobs.reduce((acc, job) => {
-      const date = dayjs(job.appliedDate).format('MMM YY');
+    let applicationsPerPeriod = jobs.reduce((acc, job) => {
+      const date = weekly
+        ? `Week ${dayjs(job.appliedDate).isoWeek()}, ${dayjs(job.appliedDate).isoWeekYear()}`
+        : dayjs(job.appliedDate).format('MMM YYYY');
 
-      const existingEntry = acc.find((entry) => entry.date === date);
+      const existingEntry = acc.find(entry => entry.date === date);
 
       if (existingEntry) {
         existingEntry.count += 1;
@@ -240,8 +244,9 @@ export async function getChartsDataAction(): Promise<
       return acc;
     }, [] as Array<{ date: string; count: number }>);
 
-    return applicationsPerMonth;
+    return applicationsPerPeriod;
   } catch (error) {
+    console.error("Error fetching job data:", error);
     redirect('/jobs');
   }
 }

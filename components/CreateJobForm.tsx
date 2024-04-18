@@ -43,7 +43,7 @@ function CreateJobForm() {
         toast({ description: 'there was an error' });
         return;
       }
-      toast({ description: 'job created' });
+      toast({ description: 'Job Saved' });
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
       queryClient.invalidateQueries({ queryKey: ['stats'] });
       queryClient.invalidateQueries({ queryKey: ['charts'] });

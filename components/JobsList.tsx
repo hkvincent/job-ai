@@ -28,8 +28,10 @@ function JobsList() {
 
   return (
     <>
-      <div className='flex items-center justify-between mb-8'>
-        <h2 className='text-xl font-semibold capitalize'>{count} jobs found</h2>
+      <div className='md:flex items-center justify-between mb-8'>
+
+        <h2 className='text-xl font-semibold capitalize mb-4 md:mb-0'>{count} jobs found</h2>
+
         {totalPages < 2 ? null : (
           <ComplexButtonContainer currentPage={page} totalPages={totalPages} />
         )}
