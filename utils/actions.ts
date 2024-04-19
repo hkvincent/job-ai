@@ -178,6 +178,7 @@ export async function getStatsAction(): Promise<{
   pending: number;
   interview: number;
   declined: number;
+  cancelled: number;
 }> {
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
@@ -202,6 +203,7 @@ export async function getStatsAction(): Promise<{
       pending: 0,
       declined: 0,
       interview: 0,
+      cancelled: 0,
       ...statsObject,
     };
     return defaultStats;

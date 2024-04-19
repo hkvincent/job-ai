@@ -17,6 +17,7 @@ export enum JobStatus {
   Pending = 'pending',
   Interview = 'interview',
   Declined = 'declined',
+  Cancelled = 'cancelled',
 }
 
 export enum JobMode {
