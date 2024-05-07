@@ -47,3 +47,6 @@ To get a local copy up and running, follow these simple steps.
 Use this section to show useful examples of how the project can be used. Screenshots, code examples, and demos work well in this section.
 
 ## Contributing
+
+## Important
+There is important with using the bash provided by git to run the commands. If you are using Windows, you can use command prompt or PowerShell to run the application.

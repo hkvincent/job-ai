@@ -11,10 +11,10 @@ function StatsContainer() {
 
   return (
     <div className='grid md:grid-cols-4 gap-4 lg:grid-cols-4'>
-      <StatsCard title='pending jobs' value={data?.pending || 0} />
-      <StatsCard title='interviews set' value={data?.interview || 0} />
-      <StatsCard title='jobs declined' value={data?.declined || 0} />
-      <StatsCard title='jobs declined' value={data?.cancelled || 0} />
+      <StatsCard title='pending jobs' value={data?.pending || 0} searchStatus='pending' />
+      <StatsCard title='interviews set' value={data?.interview || 0} searchStatus='interview' />
+      <StatsCard title='jobs declined' value={data?.declined || 0} searchStatus='declined' />
+      <StatsCard title='jobs cancelled' value={data?.cancelled || 0} searchStatus='cancelled' />
     </div>
   );
 }

@@ -5,21 +5,31 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Skeleton } from './ui/skeleton';
+import Link from 'next/link';
 type StatsCardsProps = {
   title: string;
   value: number;
+  searchStatus?: string;
 };
 
-function StatsCards({ title, value }: StatsCardsProps) {
+function StatsCards({ title, value, searchStatus }: StatsCardsProps) {
+
+  const queryParams = new URLSearchParams({
+    search: '', // Even if it's an empty string, it will appear in the URL
+    jobStatus: searchStatus || ""
+  }).toString();
+
   return (
-    <Card className='bg-muted'>
-      <CardHeader className='flex flex-row justify-between items-center'>
-        <CardTitle className='capitalize'>{title}</CardTitle>
-        <CardDescription className='text-4xl font-extrabold text-primary mt-[0px!important]'>
-          {value}
-        </CardDescription>
-      </CardHeader>
-    </Card>
+    <Link href={"jobs?" + queryParams}>
+      <Card className='bg-muted'>
+        <CardHeader className='flex flex-row justify-between items-center'>
+          <CardTitle className='capitalize'>{title}</CardTitle>
+          <CardDescription className='text-4xl font-extrabold text-primary mt-[0px!important]'>
+            {value}
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
   );
 }
 
