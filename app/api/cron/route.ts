@@ -18,7 +18,7 @@ export async function GET(request: Request) {
   const updateJobs = await prisma.job.updateMany({
     where: {
       status: 'pending',
-      updatedAt: {
+      appliedDate: {
         lt: new Date(new Date().setMonth(new Date().getMonth() - 1))
       }
     },
