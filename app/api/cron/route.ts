@@ -14,19 +14,19 @@ export async function GET(request: Request) {
   }
 
 
-  // find the pedding job with greater than one month old, change all the pending job status to Declined status
+  // find the pending job updatedAt greater than one month old, change all the pending job status to declined status
   const updateJobs = await prisma.job.updateMany({
     where: {
       status: 'pending',
-      createdAt: {
-        lte: new Date(new Date().setMonth(new Date().getMonth() - 1))
+      updatedAt: {
+        lt: new Date(new Date().setMonth(new Date().getMonth() - 1))
       }
     },
     data: {
       status: 'declined'
     }
   });
-  console.log("executing change status finished:", new Date());
+
 
 
   return NextResponse.json({
