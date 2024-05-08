@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Job AI',
-  description: 'Job application tracking system for job hunters',
+  description: 'Job application tracking system for job hunters, V',
   appleWebApp: {
     title: "JOB AI",
     statusBarStyle: "default",
